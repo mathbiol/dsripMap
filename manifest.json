@@ -1,0 +1,11 @@
+{
+  "lang": "en",
+  "name": "Maps for DSRIP by Stony Brook Biomedical Informatics Dept",
+  "short_name": "maps4dsrip",
+  "icons": [{
+        "src": "BMI126.png",
+        "sizes": "126x126",
+      }],
+  "start_url": "http://sbu-bmi.github.io/dsrip/maps.html",
+  "display": "fullscreen"
+}
