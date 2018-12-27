@@ -50,13 +50,15 @@ dsripMap=function(){
     use2015census.onclick=()=>{ // load 2015 census button
         location.hash="ACSNY2015.csv"
         dsripMap.readFileUrl(location.hash.slice(1))
+        downloadIcon.href=location.hash.slice(1);downloadIcon.hidden=false
     }
     if(location.hash.length>1){
         dsripMap.readFileUrl(location.hash.slice(1))
+        downloadIcon.href=location.hash.slice(1);downloadIcon.hidden=false
+
     }
     restartIcon.onclick=()=>{
         location.href=location.protocol+'//'+location.host+location.pathname
-        //debugger
     }
     restartIcon.style.cursor="hand"
 }
