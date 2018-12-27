@@ -47,10 +47,19 @@ dsripMap=function(){
         console.log(rows.length+'rows loaded from localForage')
         dsripMap.plot(rows)
     }
-
+    use2015census.onclick=()=>{ // load 2015 census button
+        location.hash="ACSNY2015.csv"
+        dsripMap.readFileUrl(location.hash.slice(1))
+    }
+    if(location.hash.length>1){
+        dsripMap.readFileUrl(location.hash.slice(1))
+    }
+    restartIcon.onclick=()=>{
+        location.href=location.protocol+'//'+location.host+location.pathname
+        //debugger
+    }
+    restartIcon.style.cursor="hand"
 }
-
-
 
 //dsripMap.availParms = ["total_population", "land_area_square_meters", "population_density_per_square_kilometer", "total_population_non_hispanic", "total_population_hispanic", "fraction_population_non_hispanic", "fraction_population_hispanic", "total_households", "spanish_language_households", "fraction_spanish_language_households", "english_language_households", "fraction_english_language_households", "median_age", "median_household_income_2013", "per_capita_income_2013", "total_households_receiving_snap", "total_households_with_one_disability", "fraction_receiving_snap", "fraction_with_one_disability", "total_households_owner_occupied", "total_households_renter_occupied", "fraction_households_owner_occupied", "fraction_households_renter_occupied", "total", "total_white", "total_african_american", "total_native_american", "total_asian_american", "total_two_or_more_races", "fraction_population_white", "fraction_population_african_american", "fraction_population_native_american", "fraction_population_asian_american", "fraction_population_two_or_more_races","x","y"].sort()    
 dsripMap.stats={};// we'll keep them here
@@ -92,14 +101,17 @@ dsripMap.getMapZoomByCounty=function(county_name) {
 
 
 dsripMap.plot=function(rows){
-    console.log("insize dsripMap.plot functiion.");
+    console.log("insize dsripMap.plot function.");
     dsripMap.rows=rows;
     dsripMap.markers={}; // keep markers here
     dsripMapsCountyDropdown.innerHTML='<span style="color:blue">County:<select id="selectCounty" style="color:blue"></span>: ';
     dsripMapsMsg0.innerHTML='<span style="color:blue">Loaded '+dsripMap.rows.length+' records</span>';
     dsripMapsMsg.innerHTML ='<span style="color:blue">Displaying X:<select id="selectValParm" style="color:blue"></span>: ';
     dsripMapsDropdown2.innerHTML='<span style="color:blue">Displaying Y:<select id="selectValParm2" style="color:blue"></span>: ';
-
+    // hide load buttons
+    use2015censusDiv.hidden=true
+    document.getElementById('box-select').hidden=true
+    // hidden
     dsripMap.setSelectOpt0();
     dsripMap.setSelectOpt();
     dsripMap.setSelectOpt2();
