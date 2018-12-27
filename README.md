@@ -1,5 +1,5 @@
 # dsrip
-US Survey data rendering in Google map for DSRIP project
+US Survey data rendered in Google maps for the DSRIP project
 
-living web site link in github is https://bridge2014.github.io/dsripMap/maps.html
+live tool at https://mathbiol.github.io/dsripMap
 
