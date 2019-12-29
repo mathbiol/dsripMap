@@ -199,8 +199,8 @@ dsripMap.plot=function(rows){
         })        
     }
 
-    //$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBujrQMOlux6Rgmx9DTPhQGetcyTZZbXbs&callback=dsripMap.initMap');
-    $.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyCA-UNi9Mc2Fk8cM-xIachCfshMY3NBKZs&callback=dsripMap.initMap');
+    $.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBujrQMOlux6Rgmx9DTPhQGetcyTZZbXbs&callback=dsripMap.initMap');
+    //$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyCA-UNi9Mc2Fk8cM-xIachCfshMY3NBKZs&callback=dsripMap.initMap');
     
     //setTimeout(dsripMap.plotStats,1000);
 
