@@ -189,7 +189,7 @@ dsripMap.plot=function(rows){
                         strokeWeight: 1,
                         fillColor: c,
                         fillOpacity: 0.35,
-                        i:i
+                        ij:i
                     })
                     dsripMap.rowPoly[i][j].addListener('click',dsripMap.polyClick)
                     dsripMap.rowPoly[i][j].addListener('mouseover',dsripMap.polyMouseover)
@@ -199,11 +199,12 @@ dsripMap.plot=function(rows){
         })        
     }
 
-    $.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBujrQMOlux6Rgmx9DTPhQGetcyTZZbXbs&callback=dsripMap.initMap');
+    //$.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBujrQMOlux6Rgmx9DTPhQGetcyTZZbXbs&callback=dsripMap.initMap');
+    $.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyCA-UNi9Mc2Fk8cM-xIachCfshMY3NBKZs&callback=dsripMap.initMap');
+    
+    //setTimeout(dsripMap.plotStats,1000);
 
-    setTimeout(dsripMap.plotStats,1000);
-
-    setTimeout(dsripMap.bivaribleGraph,2000);
+    //setTimeout(dsripMap.bivaribleGraph,2000);
 
 }
 
@@ -326,7 +327,7 @@ dsripMap.reMap_switch_county=function(county_name){
                         strokeWeight: 1,
                         fillColor: c,
                         fillOpacity: 0.35,
-                        i:i
+                        //i:i
                     })
                     dsripMap.rowPoly[i][j].addListener('click',dsripMap.polyClick)
                     dsripMap.rowPoly[i][j].addListener('mouseover',dsripMap.polyMouseover)
@@ -431,7 +432,7 @@ dsripMap.reMap_switch_datafile=function(rows){
                         strokeWeight: 1,
                         fillColor: c,
                         fillOpacity: 0.35,
-                        i:i
+                        //i:i
                     })
                     dsripMap.rowPoly[i][j].addListener('click',dsripMap.polyClick)
                     dsripMap.rowPoly[i][j].addListener('mouseover',dsripMap.polyMouseover)
@@ -552,20 +553,20 @@ dsripMap.setSelectOpt2=function(){
 dsripMap.polyClick=function(){
     //this.setMap(null)
     //this.setOptions({'fillColor':'blue'})
-    var row = dsripMap.rows[this.i];
-    statsClicked.innerHTML=this.i+') '+row.geo_name+' zip '+row.intersects_zip.slice(1,-1)+' ('+row.intersects_county_subdivision.slice(1,-1)+')';
+    var row = dsripMap.rows[this.ij];
+    statsClicked.innerHTML=this.ij+') '+row.geo_name+' zip '+row.intersects_zip.slice(1,-1)+' ('+row.intersects_county_subdivision.slice(1,-1)+')';
     //this.i+') '+row.geo_name+''//<select id="parm_Y"></select><div id="statsClickedPlot"></div><select id="parm_X"></select>'
     
     // add marker
-    if(!dsripMap.markers[this.i]){ // if there is no marker there add one
-        dsripMap.markers[this.i]=new google.maps.Marker({
+    if(!dsripMap.markers[this.ij]){ // if there is no marker there add one
+        dsripMap.markers[this.ij]=new google.maps.Marker({
             position: {lat: parseFloat(row.y), lng: parseFloat(row.x)},
             map: dsripMap.map,
-            title: this.i+') '+row.geo_name
+            title: this.ij+') '+row.geo_name
         });
     }else{
-        dsripMap.markers[this.i].setMap(null);
-        delete dsripMap.markers[this.i]
+        dsripMap.markers[this.ij].setMap(null);
+        delete dsripMap.markers[this.ij]
     }
     // summary statistics
     //statsClicked.innerHTML=this.i+') '+row.geo_name+' zip '+row.intersects_zip.slice(1,-1)+' ('+row.intersects_county_subdivision.slice(1,-1)+')'
@@ -588,8 +589,11 @@ dsripMap.polyClick=function(){
 dsripMap.polyMouseover=function(){
     //this.setMap(null)
     //this.setOptions({'fillColor':'blue'})
-    var row = dsripMap.rows[this.i]
-    statsMouseover.innerHTML='<b style="color:blue">'+this.i+')</b> '+row.geo_name+' zip '+row.intersects_zip.slice(1,-1)+' ('+row.intersects_county_subdivision.slice(1,-1)+')<li>'+dsripMap.parms.valParm+'= '+row[dsripMap.parms.valParm]+'</li>'
+    var row = dsripMap.rows[this.ij]
+    if(typeof(statsMouseover)=='undefined'){
+        dsripMap.plotStats()
+    }
+    statsMouseover.innerHTML='<b style="color:blue">'+this.ij+')</b> '+row.geo_name+' zip '+row.intersects_zip.slice(1,-1)+' ('+row.intersects_county_subdivision.slice(1,-1)+')<li>'+dsripMap.parms.valParm+'= '+row[dsripMap.parms.valParm]+'</li>'
 }
 
 dsripMap.plotStats=function(){
