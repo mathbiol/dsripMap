@@ -189,7 +189,7 @@ dsripMap.plot=function(rows){
                         strokeWeight: 1,
                         fillColor: c,
                         fillOpacity: 0.35,
-                        ij:i
+                        _i_:i
                     })
                     dsripMap.rowPoly[i][j].addListener('click',dsripMap.polyClick)
                     dsripMap.rowPoly[i][j].addListener('mouseover',dsripMap.polyMouseover)
@@ -327,7 +327,7 @@ dsripMap.reMap_switch_county=function(county_name){
                         strokeWeight: 1,
                         fillColor: c,
                         fillOpacity: 0.35,
-                        //i:i
+                        _i_:i
                     })
                     dsripMap.rowPoly[i][j].addListener('click',dsripMap.polyClick)
                     dsripMap.rowPoly[i][j].addListener('mouseover',dsripMap.polyMouseover)
@@ -432,7 +432,7 @@ dsripMap.reMap_switch_datafile=function(rows){
                         strokeWeight: 1,
                         fillColor: c,
                         fillOpacity: 0.35,
-                        //i:i
+                        _i_:i
                     })
                     dsripMap.rowPoly[i][j].addListener('click',dsripMap.polyClick)
                     dsripMap.rowPoly[i][j].addListener('mouseover',dsripMap.polyMouseover)
@@ -553,20 +553,20 @@ dsripMap.setSelectOpt2=function(){
 dsripMap.polyClick=function(){
     //this.setMap(null)
     //this.setOptions({'fillColor':'blue'})
-    var row = dsripMap.rows[this.ij];
-    statsClicked.innerHTML=this.ij+') '+row.geo_name+' zip '+row.intersects_zip.slice(1,-1)+' ('+row.intersects_county_subdivision.slice(1,-1)+')';
+    var row = dsripMap.rows[this._i_];
+    statsClicked.innerHTML=this._i_+') '+row.geo_name+' zip '+row.intersects_zip.slice(1,-1)+' ('+row.intersects_county_subdivision.slice(1,-1)+')';
     //this.i+') '+row.geo_name+''//<select id="parm_Y"></select><div id="statsClickedPlot"></div><select id="parm_X"></select>'
     
     // add marker
-    if(!dsripMap.markers[this.ij]){ // if there is no marker there add one
-        dsripMap.markers[this.ij]=new google.maps.Marker({
+    if(!dsripMap.markers[this._i_]){ // if there is no marker there add one
+        dsripMap.markers[this._i_]=new google.maps.Marker({
             position: {lat: parseFloat(row.y), lng: parseFloat(row.x)},
             map: dsripMap.map,
-            title: this.ij+') '+row.geo_name
+            title: this._i_+') '+row.geo_name
         });
     }else{
-        dsripMap.markers[this.ij].setMap(null);
-        delete dsripMap.markers[this.ij]
+        dsripMap.markers[this._i_].setMap(null);
+        delete dsripMap.markers[this._i_]
     }
     // summary statistics
     //statsClicked.innerHTML=this.i+') '+row.geo_name+' zip '+row.intersects_zip.slice(1,-1)+' ('+row.intersects_county_subdivision.slice(1,-1)+')'
@@ -589,11 +589,11 @@ dsripMap.polyClick=function(){
 dsripMap.polyMouseover=function(){
     //this.setMap(null)
     //this.setOptions({'fillColor':'blue'})
-    var row = dsripMap.rows[this.ij]
+    var row = dsripMap.rows[this._i_]
     if(typeof(statsMouseover)=='undefined'){
         dsripMap.plotStats()
     }
-    statsMouseover.innerHTML='<b style="color:blue">'+this.ij+')</b> '+row.geo_name+' zip '+row.intersects_zip.slice(1,-1)+' ('+row.intersects_county_subdivision.slice(1,-1)+')<li>'+dsripMap.parms.valParm+'= '+row[dsripMap.parms.valParm]+'</li>'
+    statsMouseover.innerHTML='<b style="color:blue">'+this._i_+')</b> '+row.geo_name+' zip '+row.intersects_zip.slice(1,-1)+' ('+row.intersects_county_subdivision.slice(1,-1)+')<li>'+dsripMap.parms.valParm+'= '+row[dsripMap.parms.valParm]+'</li>'
 }
 
 dsripMap.plotStats=function(){
